@@ -13,12 +13,12 @@ export const items = [
   {
     id: 2,
     itemName: 'Black',
-    itemSurname: 'Bear',
+    itemSurname: 'Cat',
   },
   {
     id: 3,
     itemName: 'Brown',
-    itemSurname: 'Bear',
+    itemSurname: 'Lion',
   },
   {
     id: 4,

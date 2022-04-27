@@ -1,6 +1,6 @@
 import {Component, Input, ElementRef, AfterViewInit, OnInit, Output, ViewChild} from '@angular/core';
-import { Item } from '../../../models/item.model';
-import { ItemsEntryService } from '../../../services/items-entry.service';
+import {Item} from '../../../models/item.model';
+import {ItemsEntryService} from '../../../services/items-entry.service';
 import {ItemDisplayComponent} from '../item-display/item-display.component';
 
 @Component({
@@ -12,22 +12,23 @@ export class ItemsListComponent implements OnInit, AfterViewInit {
 
   @Input() items!: Item[];
   @Input() term = '';
-  
+
   itemDisplayElements!: ElementRef;
   item!: Item;
-  
+
   buttons!: HTMLCollection;
   tableRows!: HTMLCollection;
   initTableRows!: HTMLCollection;
-  
+
   createBtn!: HTMLElement;
   updateBtn!: HTMLElement;
   deleteBtn!: HTMLElement;
-  
+
   @ViewChild('itemsListCmp', {static: false}) cmp: ElementRef;
   @ViewChild('itemDisplayComponent', {static: false}) itemDisplayCmp: ItemDisplayComponent;
-  
-  constructor(private itemsService: ItemsEntryService) {}
+
+  constructor(private itemsService: ItemsEntryService) {
+  }
 
   ngOnInit() {
     this.items = this.itemsService.getItems();
@@ -46,12 +47,12 @@ export class ItemsListComponent implements OnInit, AfterViewInit {
 
   clickedListItem(event: any, clickedItem: Item) {
     const clickedRow: HTMLElement = event.target;
-    
+
     this.item = clickedItem;
-    
+
     Array.from(this.buttons).forEach((button) => {
       if (button.id === 'create-btn' || button.id === 'update-btn') {
-        button.setAttribute('disabled', 'true')
+        button.setAttribute('disabled', 'true');
       } else {
         button.removeAttribute('disabled');
       }
@@ -60,13 +61,12 @@ export class ItemsListComponent implements OnInit, AfterViewInit {
     const a = Array.from(this.initTableRows);
     b.item(0);
     const c = this.buttons;
-    c.namedItem('');
-      
-      a.filter(o => o.querySelector('span').innerText !== clickedItem.id.toString())
+
+    a.filter(o => o.querySelector('span').innerText !== clickedItem.id.toString())
       .forEach((row) => {
         row.removeAttribute('style');
-    });
-    
+      });
+
     clickedRow.setAttribute('style', 'background-color: lightskyblue;');
 
   }
@@ -92,10 +92,10 @@ export class ItemsListComponent implements OnInit, AfterViewInit {
         return;
       }
       const iId = this.itemsService.getNextId();
-      currentItem = { id: iId, itemName: this.capitalize(iName), itemSurname: this.capitalize(iSurname) };
+      currentItem = {id: iId, itemName: this.capitalize(iName), itemSurname: this.capitalize(iSurname)};
       this.itemsService.addItem(currentItem);
     } else {
-      currentItem = { id: itemNum, itemName: this.capitalize(iName), itemSurname: this.capitalize(iSurname) };
+      currentItem = {id: itemNum, itemName: this.capitalize(iName), itemSurname: this.capitalize(iSurname)};
       this.itemsService.updateItem(currentItem);
     }
     this.items = this.itemsService.getItems();
@@ -115,19 +115,21 @@ export class ItemsListComponent implements OnInit, AfterViewInit {
       this.resetDisplayItem();
     }
   }
-  
+
   onDisplayItemChange() {
     const e: HTMLElement = this.itemDisplayElements.nativeElement.querySelector('#d-item-id');
     const itemNum = (this.isElement(e)) ? parseInt(e.innerText, 10) : 0;
-    if(itemNum === 0) {
-      this.createBtn.removeAttribute('disabled')  
+    if (itemNum === 0) {
+      this.createBtn.removeAttribute('disabled');
     } else {
-      this.updateBtn.removeAttribute('disabled')  
+      this.updateBtn.removeAttribute('disabled');
     }
   }
 
   capitalize(s: string): string {
-    if (typeof s !== 'string') { return ''; }
+    if (typeof s !== 'string') {
+      return '';
+    }
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
@@ -138,7 +140,7 @@ export class ItemsListComponent implements OnInit, AfterViewInit {
   isElement($obj) {
     try {
       return ($obj.constructor.__proto__.prototype.constructor.name) ? true : false;
-    }catch(e){
+    } catch (e) {
       return false;
     }
   }
