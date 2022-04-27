@@ -1,0 +1,24 @@
+<div class="container-fluid" #itemDisplayCmp>
+  <ng-container appClickedOut (clickedOutside)="activateClearButton()">
+  <div class="row p-3">
+    <div id="d-item-id" class="d-none">{{displayItem.id}}</div>
+    <div class="col-md-3">
+      <label>Name:</label>
+    </div>
+    <div class="col-md-5 col-md-offset-4">
+      <input class="border" name="d-item-name" [(ngModel)]="displayItem.itemName" (ngModelChange)="itemDisplayedChanged($event,displayItem);">
+      <div id="d-item-name-value" class="d-none">{{displayItem.itemName}}</div>
+    </div>
+  </div>
+  <div class="row p-3">
+    <br>
+    <div class="col-md-3">
+      <label>Surname:</label>
+    </div>
+    <div class="col-md-5 col-md-offset-4">
+      <input class="border" name="d-item-surname" [(ngModel)]="displayItem.itemSurname" (ngModelChange)="itemDisplayedChanged($event,displayItem);">
+      <div id="d-item-surname-value" class="d-none">{{displayItem.itemSurname}}</div>
+    </div>
+  </div>
+  </ng-container>
+</div>

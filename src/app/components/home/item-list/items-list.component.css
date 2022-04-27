@@ -1,0 +1,27 @@
+.items-table-cell {
+  color: black;
+  border: 0px;
+}
+
+.table-wrap {
+  height: 200px;
+  background-color: #FFFFFF;
+}
+
+#table-list {
+  min-height: 200px;
+  max-height: 200px;
+}
+
+tbody {
+  display:block;
+  height:200px;
+  overflow-y:auto;
+}
+tr {
+  display: block;
+}
+td {
+  height:20px;
+  width: 200px;
+}

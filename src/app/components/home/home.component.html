@@ -1,0 +1,15 @@
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-2 text-nowrap">
+      <label>Filter Prefix:</label>
+    </div>
+    <div class="col-md-7 col-md-offset-4">
+      <input name="search" type="text" [(ngModel)]="searchTerm" class="w-100 border" value=""/>
+    </div>
+  </div>
+  <div class="row clearfix">&nbsp;</div>
+</div>
+<br>
+<app-items-list [term]="searchTerm"></app-items-list>
+<br>
